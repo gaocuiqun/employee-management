@@ -1,0 +1,110 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+package com.myorg.employee.message;
+option java_package = "com.myorg.employee.message";
+option java_outer_classname = "EmployeeManagement";
+option java_multiple_files = true;
+
+import "scalapb/scalapb.proto";
+option (scalapb.options) = {
+  flat_package: true
+};
+
+message EmployeeVo {
+  string id = 1;
+  string name = 2;
+  string password = 3;
+  string desc = 4;
+}
+
+message EmployeeListVo {
+  repeated EmployeeVo items = 1;
+  bool hasMore = 2;
+  string pagingState = 3;
+}
+
+message CreateEmployeeCmd {
+  string id = 1;
+  string name = 2;
+  string password = 3;
+  string desc = 4;
+}
+
+message UpdateEmployeeCmd {
+  string id = 1;
+  string name = 2;
+  string password = 3;
+  string desc = 4;
+}
+
+message DeleteEmployeeCmd {
+  string id = 1;
+}
+
+message RetrieveEmployeeCmd {
+  string id = 1;
+}
+
+message DepartmentVo {
+  string id = 1;
+  string name = 2;
+  string desc = 3;
+}
+
+message DepartmentListVo {
+  repeated DepartmentVo items = 1;
+  bool hasMore = 2;
+  string pagingState = 3;
+}
+
+message CreateDepartmentCmd {
+  string id = 1;
+  string name = 2;
+  string desc = 3;
+}
+
+message UpdateDepartmentCmd {
+  string id = 1;
+  string name = 2;
+  string desc = 3;
+}
+
+message DeleteDepartmentCmd {
+  string id = 1;
+}
+
+message RetrieveDepartmentCmd {
+  string id = 1;
+}
+
+message EmployeeDepartmentVo {
+  string employeeId = 1;
+  string departmentId = 2;
+}
+
+message EmployeeDepartmentListVo {
+  repeated EmployeeDepartmentVo items = 1;
+  bool hasMore = 2;
+  string pagingState = 3;
+}
+
+message CreateEmployeeDepartmentCmd {
+  string employeeId = 1;
+  string departmentId = 2;
+}
+
+message UpdateEmployeeDepartmentCmd {
+  string employeeId = 1;
+  string departmentId = 2;
+}
+
+message DeleteEmployeeDepartmentCmd {
+  string employeeId = 1;
+  string departmentId = 2;
+}
+
+message RetrieveEmployeeDepartmentCmd {
+  string employeeId = 1;
+  string departmentId = 2;
+}

@@ -1,0 +1,15 @@
+employee, create-employee
+, retrieve-employee
+, update-employee
+, delete-employee
+, query-employee
+department, create-department
+, retrieve-department
+, update-department
+, delete-department
+, query-department
+employee-department, create-employee-department
+, retrieve-employee-department
+, update-employee-department
+, delete-employee-department
+, query-employee-department
