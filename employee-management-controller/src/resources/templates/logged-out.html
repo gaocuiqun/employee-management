@@ -1,11 +1,44 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>登录</title>
+  <meta charset="utf-8">
+  <title>员工管理系统</title>
+  <style>
+        .form{
+            width:400px;
+            height: 300px;
+            padding-top:10px;
+            margin: 50px auto;
+            background-color:rgba(255,255,255,0.35);
+            border-radius: 20px;
+            border: 3px solid white;
+        }
+        .button1 {
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            padding: 16px 60px;
+            text-align: center;
+            background-color: white;
+            color: black;
+            border: 2px solid white;
+            border-radius:5px;
+        }
+        .button1:hover {
+            background-color: black;
+            color: white;
+        }
+        a:link {text-decoration:none;color:black;}
+        </style>
 </head>
-<body>
-<p>你已经注消登录。</p>
-<p><a href="/login">重新登录</a></p>
+
+<body bgcolor="#40E0D0">
+<center>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+  <form class="form" name="loginForm" method="post">
+    <br><br><br>
+    <h1 style="color:white">员工管理系统</h1>
+    <font size="1">**您已退出登录**</font><br><br>
+    <a href="/"><button class="button1">返回主页</button></a>
+    <a href="/login"><button class="button1">重新登录</button></a>
+</center>
 </body>
 </html>
