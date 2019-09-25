@@ -1,14 +1,93 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>用户管理程序</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>员工管理系统主页</title>
+
+
+    <style type="text/css">
+        body{
+            padding-top:50px;
+            width: 1600px;
+            height: 800px;
+            margin:auto auto;
+        }
+        .table{
+            border:3px solid white;
+            border-radius: 20px;
+        }
+        tr,td{
+            text-align: center;
+        }
+        .tb1{
+            width: 1600px;
+            height: 100px;
+            background-color:rgba(255,255,255,0.3);
+            border-radius: 20px;
+            border: 2px solid white;
+            color: white;
+        }
+        .tb2{
+            width: 400px;
+            height: 50px;
+            background-color:rgba(255,255,255,0.6);
+            border-radius: 20px;
+            border: 2px solid white;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            color: black;
+        }
+        .tb2:hover {
+            background-color: white;
+            color: black;
+        }
+        .tb4{
+            height: 650px;
+            width: 1600px;
+            background-color:rgba(255,255,255,0.6);
+            border-radius: 20px;
+            border: 2px solid white;
+        }
+        .tb5{
+            height: 540px;
+            width: 400px;
+            background-color:rgba(255,255,255,0.5);
+            border-radius: 20px;
+            border: 1px solid white;
+        }
+        .tb6{
+            height: 90px;
+            width: 400px;
+            background-color:rgba(255,255,255,0.5);
+            border-radius: 20px;
+            border: 1px solid white;
+        }
+        button{
+            text-align: center;
+            padding: 5px 25px;
+            background-color:rgba(255,255,255,0.6);
+            color: black;
+            border: 2px solid white;
+            border-radius:5px;
+        }
+        a:link {text-decoration:none;color:black;}
+    </style>
 </head>
-<body>
-<h1>主页</h1>
-<p>点击这里<a href="/login">登录</a>。</p>
-<p>点击这里<a href="/logout">注销</a>。</p>
-<p>点击这里看<a href="/welcome">欢迎</a>页面。</p>
-<p>点击这里看<a href="/">主页</a>页面。</p>
+<body bgcolor="#40E0D0">
+<p align=right><a href="/login"><button>登录账号</button></a>&nbsp<a href="/logged-out"><button>注销登录</button></a></p>
+<table class="table" border="1" cellspacing="2" cellpadding="0">
+    <tr>
+        <td colspan="4" class="tb1"><h1>员工管理系统主页</h1></td>
+    </tr>
+    <tr>
+        <td class="tb2"><a href="/">&nbsp首页&nbsp</a></td>
+        <td class="tb2"><a href="/welcome">&nbsp管理页面&nbsp</a></td>
+        <td class="tb2"><a href="#news3">&nbsp3&nbsp</a></td>
+        <td class="tb2"><a href="/h4">&nbsp关于&nbsp</a></td>
+    </tr>
+    <tr>
+        <td class="tb4" colspan="4">主页信息...</td>
+    </tr>
+</table>
 </body>
 </html>
