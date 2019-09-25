@@ -89,7 +89,7 @@ CREATE TABLE [employeedb].[employee] (
   [id] VARCHAR(64) NOT NULL,
   [name] VARCHAR(128) NOT NULL,
   [gender] INT NOT NULL,
-  [employ_date] DATETIME NOT NULL
+  [employed_date] DATETIME NOT NULL
 )
 GO
 

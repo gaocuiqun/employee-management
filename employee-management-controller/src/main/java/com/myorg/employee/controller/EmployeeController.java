@@ -89,7 +89,7 @@ public class EmployeeController {
     cell.setCellValue("Gender");
     cell.setCellStyle(style);
     cell = row.createCell(colNumber++);
-    cell.setCellValue("EmployDate");
+    cell.setCellValue("EmployedDate");
     cell.setCellStyle(style);
   }
 
@@ -106,7 +106,7 @@ public class EmployeeController {
     cell.setCellValue(String.format("%s", vo.getGender()));
     cell.setCellStyle(style);
     cell = row.createCell(colNumber++);
-    cell.setCellValue(String.format("%s", formatTimestamp(vo.getEmployDate())));
+    cell.setCellValue(String.format("%s", formatTimestamp(vo.getEmployedDate())));
     cell.setCellStyle(style);
   }
 }

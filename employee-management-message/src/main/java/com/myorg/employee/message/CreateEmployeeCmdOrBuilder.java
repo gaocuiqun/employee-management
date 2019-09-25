@@ -37,15 +37,15 @@ public interface CreateEmployeeCmdOrBuilder extends
   com.myorg.employee.message.Gender getGender();
 
   /**
-   * <code>.google.protobuf.Timestamp employDate = 4;</code>
+   * <code>.google.protobuf.Timestamp employedDate = 4;</code>
    */
-  boolean hasEmployDate();
+  boolean hasEmployedDate();
   /**
-   * <code>.google.protobuf.Timestamp employDate = 4;</code>
+   * <code>.google.protobuf.Timestamp employedDate = 4;</code>
    */
-  com.google.protobuf.Timestamp getEmployDate();
+  com.google.protobuf.Timestamp getEmployedDate();
   /**
-   * <code>.google.protobuf.Timestamp employDate = 4;</code>
+   * <code>.google.protobuf.Timestamp employedDate = 4;</code>
    */
-  com.google.protobuf.TimestampOrBuilder getEmployDateOrBuilder();
+  com.google.protobuf.TimestampOrBuilder getEmployedDateOrBuilder();
 }

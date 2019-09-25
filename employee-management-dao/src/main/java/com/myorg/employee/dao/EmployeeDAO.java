@@ -27,7 +27,7 @@ public class EmployeeDAO {
       map.put("id", TypeConverters.toJavaTypeConverter("string"));
       map.put("name", TypeConverters.toJavaTypeConverter("string"));
       map.put("gender", TypeConverters.toJavaTypeConverter("Gender"));
-      map.put("employDate", TypeConverters.toJavaTypeConverter("timestamp"));
+      map.put("employedDate", TypeConverters.toJavaTypeConverter("timestamp"));
       this.mappers = map;
     }
 
@@ -50,7 +50,7 @@ public class EmployeeDAO {
       if(null != rs.getString("id")) builder.setId(rs.getString("id"));
       if(null != rs.getString("name")) builder.setName(rs.getString("name"));
       builder.setGender(Gender.forNumber(rs.getInt("gender")));
-      if(null != rs.getTimestamp("employ_date")) builder.setEmployDate(toTimestamp(rs.getTimestamp("employ_date")));
+      if(null != rs.getTimestamp("employed_date")) builder.setEmployedDate(toTimestamp(rs.getTimestamp("employed_date")));
 
       return builder.build();
     }
@@ -62,24 +62,24 @@ public class EmployeeDAO {
   }
 
   public int create(CreateEmployeeCmd c) {
-    int rowsAffected = jdbcTemplate.update("UPDATE employeedb.employee SET name = ?, gender = ?, employ_date = ? WHERE id = ?", c.getName(), c.getGender().getNumber(), toDate(c.getEmployDate()), c.getId());
+    int rowsAffected = jdbcTemplate.update("UPDATE employeedb.employee SET name = ?, gender = ?, employed_date = ? WHERE id = ?", c.getName(), c.getGender().getNumber(), toDate(c.getEmployedDate()), c.getId());
     if(rowsAffected > 0) {
       return rowsAffected;
     } else {
-      return jdbcTemplate.update("INSERT INTO employeedb.employee(id,name,gender,employ_date) VALUES (?,?,?,?)", c.getId(),c.getName(),c.getGender().getNumber(),toDate(c.getEmployDate()));
+      return jdbcTemplate.update("INSERT INTO employeedb.employee(id,name,gender,employed_date) VALUES (?,?,?,?)", c.getId(),c.getName(),c.getGender().getNumber(),toDate(c.getEmployedDate()));
     }
   }
 
   public EmployeeVo retrieveByRowid(RetrieveByRowidCmd c) {
-    return (EmployeeVo) jdbcTemplate.queryForObject("SELECT id, name, gender, employ_date FROM employeedb.employee WHERE rowid = ? ", rowMapper, c.getRowid());
+    return (EmployeeVo) jdbcTemplate.queryForObject("SELECT id, name, gender, employed_date FROM employeedb.employee WHERE rowid = ? ", rowMapper, c.getRowid());
   }
 
   public EmployeeVo retrieve(RetrieveEmployeeCmd c) {
-    return (EmployeeVo) jdbcTemplate.queryForObject("SELECT id, name, gender, employ_date FROM employeedb.employee WHERE id = ? ", rowMapper, c.getId());
+    return (EmployeeVo) jdbcTemplate.queryForObject("SELECT id, name, gender, employed_date FROM employeedb.employee WHERE id = ? ", rowMapper, c.getId());
   }
 
   public int update(UpdateEmployeeCmd c) {
-    return jdbcTemplate.update("UPDATE employeedb.employee SET name = ?, gender = ?, employ_date = ? WHERE id = ?", c.getName(), c.getGender().getNumber(), toDate(c.getEmployDate()), c.getId());
+    return jdbcTemplate.update("UPDATE employeedb.employee SET name = ?, gender = ?, employed_date = ? WHERE id = ?", c.getName(), c.getGender().getNumber(), toDate(c.getEmployedDate()), c.getId());
   }
 
   public int delete(DeleteEmployeeCmd c) {
@@ -100,10 +100,10 @@ public class EmployeeDAO {
           .get();
       String sql = String.format("WITH Paginatedemployee AS ("
           + "SELECT ROW_NUMBER() OVER (ORDER BY %s) AS RowNumber, "
-          + "id, name, gender, employ_date "
+          + "id, name, gender, employed_date "
           + "FROM employeedb.employee %s "
           + ")"
-          + "SELECT id, name, gender, employ_date "
+          + "SELECT id, name, gender, employed_date "
           + "FROM Paginatedemployee "
           + "WHERE RowNumber > ? AND RowNumber <= ?",
           orderBy,
@@ -123,7 +123,7 @@ public class EmployeeDAO {
         .setHasMore(!(jdbcTemplate.query(sql, rowMapper, moreParams.toArray()).isEmpty()))
         .build();
     } else {
-      String sql = String.format("SELECT id, name, gender, employ_date FROM employeedb.employee %s ", where.toWhereClause(q));
+      String sql = String.format("SELECT id, name, gender, employed_date FROM employeedb.employee %s ", where.toWhereClause(q));
       logger.info(sql);
       return EmployeeListVo.newBuilder()
         .addAllItems(jdbcTemplate.query(sql, rowMapper, where.toUnnamedParamList(q, paramMapper).toArray()))

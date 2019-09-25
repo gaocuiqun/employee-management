@@ -82,7 +82,7 @@ message EmployeeVo {
   string id = 1;
   string name = 2;
   Gender gender = 3;
-  google.protobuf.Timestamp employDate = 4;
+  google.protobuf.Timestamp employedDate = 4;
 }
 
 message EmployeeListVo {
@@ -95,14 +95,14 @@ message CreateEmployeeCmd {
   string id = 1;
   string name = 2;
   Gender gender = 3;
-  google.protobuf.Timestamp employDate = 4;
+  google.protobuf.Timestamp employedDate = 4;
 }
 
 message UpdateEmployeeCmd {
   string id = 1;
   string name = 2;
   Gender gender = 3;
-  google.protobuf.Timestamp employDate = 4;
+  google.protobuf.Timestamp employedDate = 4;
 }
 
 message DeleteEmployeeCmd {
