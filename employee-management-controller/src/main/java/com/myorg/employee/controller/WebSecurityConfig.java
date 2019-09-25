@@ -15,6 +15,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         SimpleUrlAuthenticationFailureHandler failureHandler = new SimpleUrlAuthenticationFailureHandler();
         //failureHandler.setUseForward(true);
         http
+                .cors().disable()
+                .csrf().disable()
                 .addFilterBefore(new CaptchaFilter(failureHandler), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/", "/captcha").permitAll()

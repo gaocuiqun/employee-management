@@ -28,7 +28,7 @@ public class UserAuthService implements UserDetailsService {
                     .username(employeeVo.getName())
                     .password("password")
                     .password(employeeVo.getPassword())
-                    .roles("user")
+                    .roles("USER")
                     .build();
 
         } catch (Exception sqlex) {

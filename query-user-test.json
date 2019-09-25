@@ -1,0 +1,21 @@
+{
+  "predicate" : {
+    "connection" : {
+      "predicates" : [ {
+        "predicate" : {
+          "predicateType" : "EQ",
+          "fieldName" : "name",
+          "paramNames" : [ "name" ]
+        }
+      } ]
+    }
+  },
+  "params" : {
+    "name" : "user"
+  },
+  "pageNumber" : 1,
+  "rowsPerPage" : 10,
+  "orderBy" : [ {
+    "fieldName" : "name"
+  } ]
+}

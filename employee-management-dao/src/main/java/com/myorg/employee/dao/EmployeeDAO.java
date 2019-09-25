@@ -95,25 +95,21 @@ public class EmployeeDAO {
         .reduce((x, y) -> x && y)
         .get())) throw new RuntimeException("Invalid order by field.");
       String orderBy = q.getOrderByList().stream()
-          .map(x -> String.format("%s %s", SymbolConverters.cToPascal().apply(x.getFieldName()), x.getOrder()))
+          .map(x -> String.format("%s %s", x.getFieldName(), x.getOrder()))
           .reduce((x, y) -> String.format("%s, %s", x, y))
           .get();
-      String sql = String.format("WITH Paginatedemployee AS ("
-          + "SELECT ROW_NUMBER() OVER (ORDER BY %s) AS RowNumber, "
-          + "id, name, gender, employed_date "
+      String sql = String.format("SELECT id, name, gender, employed_date "
           + "FROM employeedb.employee %s "
-          + ")"
-          + "SELECT id, name, gender, employed_date "
-          + "FROM Paginatedemployee "
-          + "WHERE RowNumber > ? AND RowNumber <= ?",
-          orderBy,
-          where.toWhereClause(q));
+          + "ORDER BY %s "
+          + "LIMIT ? OFFSET ?",
+          where.toWhereClause(q),
+          orderBy);
       List<Object> params = new LinkedList<>(where.toUnnamedParamList(q, paramMapper));
-      Integer beginRow = Integer.valueOf((q.getPageNumber() == 0 ? 0 : (q.getPageNumber() - 1)) * q.getRowsPerPage());
+      Integer beginRow = Integer.valueOf((q.getPageNumber() - 1) * q.getRowsPerPage());
       Integer endRow = Integer.valueOf(q.getPageNumber() * q.getRowsPerPage());
       List<Object> moreParams = new LinkedList<>(params);
+      params.add(q.getRowsPerPage());
       params.add(beginRow);
-      params.add(endRow);
       moreParams.add(endRow);
       moreParams.add(endRow + 1);
       logger.info(sql);
