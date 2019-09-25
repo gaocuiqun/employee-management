@@ -13,9 +13,9 @@ import java.sql.*;
 import java.util.*;
 
 @Component
-public class EmployeeDAO {
+public class GenderDAO {
 
-  private final static Logger logger = LoggerFactory.getLogger(EmployeeDAO.class);
+  private final static Logger logger = LoggerFactory.getLogger(GenderDAO.class);
   private final WhereClauseWithUnnamedParams where = new WhereClauseWithUnnamedParams(new CamelToCConverter());
   @Autowired
   private final JdbcTemplate jdbcTemplate;
@@ -24,10 +24,8 @@ public class EmployeeDAO {
 
     public ParamMapper() {
       Map<String, TypeConverter> map = new HashMap<>();
-      map.put("id", TypeConverters.toJavaTypeConverter("string"));
+      map.put("id", TypeConverters.toJavaTypeConverter("int"));
       map.put("name", TypeConverters.toJavaTypeConverter("string"));
-      map.put("gender", TypeConverters.toJavaTypeConverter("Gender"));
-      map.put("employDate", TypeConverters.toJavaTypeConverter("timestamp"));
       this.mappers = map;
     }
 
@@ -44,49 +42,47 @@ public class EmployeeDAO {
     }
   }
   private final QueryParamMapper paramMapper = new ParamMapper();
-  public static class ResultRowMapper implements RowMapper<EmployeeVo> {
-    public EmployeeVo mapRow(java.sql.ResultSet rs, int rowNum) throws SQLException {
-      EmployeeVo.Builder builder = EmployeeVo.newBuilder();
-      if(null != rs.getString("id")) builder.setId(rs.getString("id"));
+  public static class ResultRowMapper implements RowMapper<GenderVo> {
+    public GenderVo mapRow(java.sql.ResultSet rs, int rowNum) throws SQLException {
+      GenderVo.Builder builder = GenderVo.newBuilder();
+      builder.setId(rs.getInt("id"));
       if(null != rs.getString("name")) builder.setName(rs.getString("name"));
-      builder.setGender(Gender.forNumber(rs.getInt("gender")));
-      if(null != rs.getTimestamp("employ_date")) builder.setEmployDate(toTimestamp(rs.getTimestamp("employ_date")));
 
       return builder.build();
     }
   }
-  private final RowMapper<EmployeeVo> rowMapper = new ResultRowMapper();
+  private final RowMapper<GenderVo> rowMapper = new ResultRowMapper();
 
-  public EmployeeDAO(JdbcTemplate jdbcTemplate) {
+  public GenderDAO(JdbcTemplate jdbcTemplate) {
     this.jdbcTemplate = jdbcTemplate;
   }
 
-  public int create(CreateEmployeeCmd c) {
-    int rowsAffected = jdbcTemplate.update("UPDATE employeedb.employee SET name = ?, gender = ?, employ_date = ? WHERE id = ?", c.getName(), c.getGender().getNumber(), toDate(c.getEmployDate()), c.getId());
+  public int create(CreateGenderCmd c) {
+    int rowsAffected = jdbcTemplate.update("UPDATE employeedb.Gender SET name = ? WHERE id = ?", c.getName(), c.getId());
     if(rowsAffected > 0) {
       return rowsAffected;
     } else {
-      return jdbcTemplate.update("INSERT INTO employeedb.employee(id,name,gender,employ_date) VALUES (?,?,?,?)", c.getId(),c.getName(),c.getGender().getNumber(),toDate(c.getEmployDate()));
+      return jdbcTemplate.update("INSERT INTO employeedb.Gender(id,name) VALUES (?,?)", c.getId(),c.getName());
     }
   }
 
-  public EmployeeVo retrieveByRowid(RetrieveByRowidCmd c) {
-    return (EmployeeVo) jdbcTemplate.queryForObject("SELECT id, name, gender, employ_date FROM employeedb.employee WHERE rowid = ? ", rowMapper, c.getRowid());
+  public GenderVo retrieveByRowid(RetrieveByRowidCmd c) {
+    return (GenderVo) jdbcTemplate.queryForObject("SELECT id, name FROM employeedb.Gender WHERE rowid = ? ", rowMapper, c.getRowid());
   }
 
-  public EmployeeVo retrieve(RetrieveEmployeeCmd c) {
-    return (EmployeeVo) jdbcTemplate.queryForObject("SELECT id, name, gender, employ_date FROM employeedb.employee WHERE id = ? ", rowMapper, c.getId());
+  public GenderVo retrieve(RetrieveGenderCmd c) {
+    return (GenderVo) jdbcTemplate.queryForObject("SELECT id, name FROM employeedb.Gender WHERE id = ? ", rowMapper, c.getId());
   }
 
-  public int update(UpdateEmployeeCmd c) {
-    return jdbcTemplate.update("UPDATE employeedb.employee SET name = ?, gender = ?, employ_date = ? WHERE id = ?", c.getName(), c.getGender().getNumber(), toDate(c.getEmployDate()), c.getId());
+  public int update(UpdateGenderCmd c) {
+    throw new UnsupportedOperationException();
   }
 
-  public int delete(DeleteEmployeeCmd c) {
-    return jdbcTemplate.update("DELETE FROM employeedb.employee WHERE id = ?", c.getId());
+  public int delete(DeleteGenderCmd c) {
+    return jdbcTemplate.update("DELETE FROM employeedb.Gender WHERE id = ?", c.getId());
   }
 
-  public EmployeeListVo query(QueryCommand q) {
+  public GenderListVo query(QueryCommand q) {
     if(q.getPageNumber() > 0
       && q.getRowsPerPage() > 0
       && q.getOrderByCount() > 0) {
@@ -98,13 +94,13 @@ public class EmployeeDAO {
           .map(x -> String.format("%s %s", SymbolConverters.cToPascal().apply(x.getFieldName()), x.getOrder()))
           .reduce((x, y) -> String.format("%s, %s", x, y))
           .get();
-      String sql = String.format("WITH Paginatedemployee AS ("
+      String sql = String.format("WITH PaginatedGender AS ("
           + "SELECT ROW_NUMBER() OVER (ORDER BY %s) AS RowNumber, "
-          + "id, name, gender, employ_date "
-          + "FROM employeedb.employee %s "
+          + "id, name "
+          + "FROM employeedb.Gender %s "
           + ")"
-          + "SELECT id, name, gender, employ_date "
-          + "FROM Paginatedemployee "
+          + "SELECT id, name "
+          + "FROM PaginatedGender "
           + "WHERE RowNumber > ? AND RowNumber <= ?",
           orderBy,
           where.toWhereClause(q));
@@ -118,14 +114,14 @@ public class EmployeeDAO {
       moreParams.add(endRow + 1);
       logger.info(sql);
       jdbcTemplate.query(sql, rowMapper, params.toArray());
-      return EmployeeListVo.newBuilder()
+      return GenderListVo.newBuilder()
         .addAllItems(jdbcTemplate.query(sql, rowMapper, params.toArray()))
         .setHasMore(!(jdbcTemplate.query(sql, rowMapper, moreParams.toArray()).isEmpty()))
         .build();
     } else {
-      String sql = String.format("SELECT id, name, gender, employ_date FROM employeedb.employee %s ", where.toWhereClause(q));
+      String sql = String.format("SELECT id, name FROM employeedb.Gender %s ", where.toWhereClause(q));
       logger.info(sql);
-      return EmployeeListVo.newBuilder()
+      return GenderListVo.newBuilder()
         .addAllItems(jdbcTemplate.query(sql, rowMapper, where.toUnnamedParamList(q, paramMapper).toArray()))
         .build();
     }

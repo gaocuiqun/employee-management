@@ -11,11 +11,78 @@ option (scalapb.options) = {
   flat_package: true
 };
 
-message EmployeeVo {
+message UserVo {
   string id = 1;
   string name = 2;
   string password = 3;
-  string desc = 4;
+}
+
+message UserListVo {
+  repeated UserVo items = 1;
+  bool hasMore = 2;
+  string pagingState = 3;
+}
+
+message CreateUserCmd {
+  string id = 1;
+  string name = 2;
+  string password = 3;
+}
+
+message UpdateUserCmd {
+  string id = 1;
+  string name = 2;
+  string password = 3;
+}
+
+message DeleteUserCmd {
+  string name = 2;
+}
+
+message RetrieveUserCmd {
+  string name = 2;
+}
+
+message GenderVo {
+  int32 id = 1;
+  string name = 2;
+}
+
+message GenderListVo {
+  repeated GenderVo items = 1;
+  bool hasMore = 2;
+  string pagingState = 3;
+}
+
+message CreateGenderCmd {
+  int32 id = 1;
+  string name = 2;
+}
+
+message UpdateGenderCmd {
+  int32 id = 1;
+  string name = 2;
+}
+
+message DeleteGenderCmd {
+  int32 id = 1;
+}
+
+message RetrieveGenderCmd {
+  int32 id = 1;
+}
+
+enum Gender {
+  UNKNOWN_GENDER = 0;
+  MALE = 1;
+  FEMALE = 2;
+}
+       
+message EmployeeVo {
+  string id = 1;
+  string name = 2;
+  Gender gender = 3;
+  google.protobuf.Timestamp employDate = 4;
 }
 
 message EmployeeListVo {
@@ -27,15 +94,15 @@ message EmployeeListVo {
 message CreateEmployeeCmd {
   string id = 1;
   string name = 2;
-  string password = 3;
-  string desc = 4;
+  Gender gender = 3;
+  google.protobuf.Timestamp employDate = 4;
 }
 
 message UpdateEmployeeCmd {
   string id = 1;
   string name = 2;
-  string password = 3;
-  string desc = 4;
+  Gender gender = 3;
+  google.protobuf.Timestamp employDate = 4;
 }
 
 message DeleteEmployeeCmd {

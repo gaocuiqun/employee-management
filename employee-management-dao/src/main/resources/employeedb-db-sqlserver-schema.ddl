@@ -66,6 +66,19 @@ GO
 
 GRANT SELECT, UPDATE, DELETE ON SCHEMA::[employeedb] to [employeedb]
 
+CREATE TABLE [employeedb].[user] (
+  [name] VARCHAR(64) NOT NULL,
+  [id] VARCHAR(64) NOT NULL,
+  [password] VARCHAR(64) NOT NULL
+)
+GO
+
+CREATE TABLE [employeedb].[Gender] (
+  [id] INT NOT NULL,
+  [name] VARCHAR(64)
+)
+GO
+
 CREATE TABLE [employeedb].[employee_department] (
   [employee_id] VARCHAR(64) NOT NULL,
   [department_id] VARCHAR(64) NOT NULL
@@ -75,8 +88,8 @@ GO
 CREATE TABLE [employeedb].[employee] (
   [id] VARCHAR(64) NOT NULL,
   [name] VARCHAR(128) NOT NULL,
-  [password] VARCHAR(64) NOT NULL,
-  [desc] VARCHAR(128) NOT NULL
+  [gender] INT NOT NULL,
+  [employ_date] DATETIME NOT NULL
 )
 GO
 
@@ -85,6 +98,14 @@ CREATE TABLE [employeedb].[department] (
   [name] VARCHAR(128) NOT NULL,
   [desc] VARCHAR(128) NOT NULL
 )
+GO
+
+ALTER TABLE [employeedb].[user] WITH CHECK
+ADD CONSTRAINT [user_pk] PRIMARY KEY ([name])
+GO
+
+ALTER TABLE [employeedb].[Gender] WITH CHECK
+ADD CONSTRAINT [EntityTypePk] PRIMARY KEY ([id])
 GO
 
 ALTER TABLE [employeedb].[employee_department] WITH CHECK

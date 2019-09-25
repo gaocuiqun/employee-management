@@ -1,3 +1,8 @@
+user, create-user
+, retrieve-user
+, update-user
+, delete-user
+, query-user
 employee, create-employee
 , retrieve-employee
 , update-employee

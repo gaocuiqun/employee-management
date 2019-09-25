@@ -15,46 +15,46 @@ import java.io.*;
 import java.util.*;
 
 @RestController
-@RequestMapping(value="employee", method=RequestMethod.POST)
-public class EmployeeController {
+@RequestMapping(value="user", method=RequestMethod.POST)
+public class UserController {
   @Autowired
-  private EmployeeService service;
+  private UserService service;
 
-  @RequestMapping(value="create-employee", produces="application/json")
-  public void create(@RequestBody CreateEmployeeCmd c, HttpServletRequest r) throws URISyntaxException {
+  @RequestMapping(value="create-user", produces="application/json")
+  public void create(@RequestBody CreateUserCmd c, HttpServletRequest r) throws URISyntaxException {
     service.create(c, r.getUserPrincipal(), new URI(r.getRequestURI()));
   }
 
-  @RequestMapping(value="retrieve-employee-by-rowid", produces="application/json")
-  public EmployeeVo retrieveByRowid(@RequestBody RetrieveByRowidCmd c, HttpServletRequest r) throws URISyntaxException {
+  @RequestMapping(value="retrieve-user-by-rowid", produces="application/json")
+  public UserVo retrieveByRowid(@RequestBody RetrieveByRowidCmd c, HttpServletRequest r) throws URISyntaxException {
     return service.retrieveByRowid(c, r.getUserPrincipal(), new URI(r.getRequestURI()));
   }
   
-  @RequestMapping(value="retrieve-employee", produces="application/json")
-  public EmployeeVo retrieve(@RequestBody RetrieveEmployeeCmd c, HttpServletRequest r) throws URISyntaxException {
+  @RequestMapping(value="retrieve-user", produces="application/json")
+  public UserVo retrieve(@RequestBody RetrieveUserCmd c, HttpServletRequest r) throws URISyntaxException {
     return service.retrieve(c, r.getUserPrincipal(), new URI(r.getRequestURI()));
   }
   
-  @RequestMapping(value="update-employee", produces="application/json")
-  public void update(@RequestBody UpdateEmployeeCmd c, HttpServletRequest r) throws URISyntaxException {
+  @RequestMapping(value="update-user", produces="application/json")
+  public void update(@RequestBody UpdateUserCmd c, HttpServletRequest r) throws URISyntaxException {
     service.update(c, r.getUserPrincipal(), new URI(r.getRequestURI()));
   }
 
-  @RequestMapping(value="delete-employee", produces="application/json")
-  public void delete(@RequestBody DeleteEmployeeCmd c, HttpServletRequest r) throws URISyntaxException {
+  @RequestMapping(value="delete-user", produces="application/json")
+  public void delete(@RequestBody DeleteUserCmd c, HttpServletRequest r) throws URISyntaxException {
     service.delete(c, r.getUserPrincipal(), new URI(r.getRequestURI()));
   }
 
-  @RequestMapping(value="query-employee", produces="application/json")
-  public EmployeeListVo query(@RequestBody QueryCommand q, HttpServletRequest r) throws URISyntaxException {
+  @RequestMapping(value="query-user", produces="application/json")
+  public UserListVo query(@RequestBody QueryCommand q, HttpServletRequest r) throws URISyntaxException {
     return service.query(q, r.getUserPrincipal(), new URI(r.getRequestURI()));
   }
 
-  @RequestMapping(value="export-employee", consumes="application/json")
+  @RequestMapping(value="export-user", consumes="application/json")
   public void export(@RequestBody QueryCommand q, HttpServletRequest request, HttpServletResponse response) throws URISyntaxException, IOException {
-    final EmployeeListVo listVo = service.query(q, request.getUserPrincipal(), new URI(request.getRequestURI()));
+    final UserListVo listVo = service.query(q, request.getUserPrincipal(), new URI(request.getRequestURI()));
     HSSFWorkbook wb = new HSSFWorkbook();
-    HSSFSheet sheet = wb.createSheet("Employee");
+    HSSFSheet sheet = wb.createSheet("User");
 
     HSSFCellStyle style = wb.createCellStyle();
     style.setFillBackgroundColor(HSSFColor.HSSFColorPredefined.AQUA.getIndex());
@@ -66,13 +66,13 @@ public class EmployeeController {
 
     short rowNumber = 0;
     exportHeaderCells(sheet.createRow(rowNumber++), style);
-    for(EmployeeVo vo: listVo.getItemsList()) {
+    for(UserVo vo: listVo.getItemsList()) {
       HSSFRow row = sheet.createRow(rowNumber++);
       exportDataCells(vo, row, style);
     }
 
     response.setContentType("application/vnd.ms-excel");
-    response.setHeader("Content-disposition",String.format("attachment; filename=%sList-%s.xls", "Employee", formatTimestamp(new Date())));
+    response.setHeader("Content-disposition",String.format("attachment; filename=%sList-%s.xls", "User", formatTimestamp(new Date())));
     wb.write(response.getOutputStream());
   }
 
@@ -86,14 +86,11 @@ public class EmployeeController {
     cell.setCellValue("Name");
     cell.setCellStyle(style);
     cell = row.createCell(colNumber++);
-    cell.setCellValue("Gender");
-    cell.setCellStyle(style);
-    cell = row.createCell(colNumber++);
-    cell.setCellValue("EmployDate");
+    cell.setCellValue("Password");
     cell.setCellStyle(style);
   }
 
-  private void exportDataCells(EmployeeVo vo, HSSFRow row, HSSFCellStyle style) {
+  private void exportDataCells(UserVo vo, HSSFRow row, HSSFCellStyle style) {
     short colNumber = 0;
     HSSFCell cell = null;
     cell = row.createCell(colNumber++);
@@ -103,10 +100,7 @@ public class EmployeeController {
     cell.setCellValue(String.format("%s", vo.getName()));
     cell.setCellStyle(style);
     cell = row.createCell(colNumber++);
-    cell.setCellValue(String.format("%s", vo.getGender()));
-    cell.setCellStyle(style);
-    cell = row.createCell(colNumber++);
-    cell.setCellValue(String.format("%s", formatTimestamp(vo.getEmployDate())));
+    cell.setCellValue(String.format("%s", vo.getPassword()));
     cell.setCellStyle(style);
   }
 }
