@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.myorg.employee</groupId>
-  <artifactId>employee-management-service</artifactId>
+  <artifactId>employee-management-util</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <parent>
@@ -15,19 +15,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.myorg.employee</groupId>
-      <artifactId>employee-management-dao</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.myorg.employee</groupId>
-      <artifactId>employee-management-util</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.github.apuex.event-source</groupId>
-      <artifactId>event-source-api</artifactId>
-      <version>1.0.1</version>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -35,14 +25,6 @@
       <version>2.0.3.RELEASE</version>
       <scope>test</scope>
     </dependency>
-      <dependency>
-          <groupId>org.springframework.security</groupId>
-          <artifactId>spring-security-core</artifactId>
-          <version>5.0.6.RELEASE</version>
-          <scope>compile</scope>
-      </dependency>
   </dependencies>
 
 </project>
-
-       

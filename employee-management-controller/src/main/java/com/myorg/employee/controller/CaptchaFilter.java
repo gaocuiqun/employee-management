@@ -35,7 +35,7 @@ public class CaptchaFilter implements Filter {
             if (captcha != null && !captcha.trim().equals("")
                     && ssnCaptcha != null && !ssnCaptcha.trim().equals("")) {
                 if (captcha.equals(ssnCaptcha)) {
-                    logger.info("proceed with login, captcha matches(ssn against posted): {} != {}.", ssnCaptcha, captcha);
+                    logger.info("proceed with login, captcha matches(ssn against posted): {} == {}.", ssnCaptcha, captcha);
                     chain.doFilter(req, resp);
                     return;
                 } else {

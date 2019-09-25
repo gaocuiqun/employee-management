@@ -24,6 +24,7 @@
     <module>employee-management-dao</module>
     <module>employee-management-message</module>
     <module>employee-management-service</module>
+    <module>employee-management-util</module>
   </modules>
 
   <build>
