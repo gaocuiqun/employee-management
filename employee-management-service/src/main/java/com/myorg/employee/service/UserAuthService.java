@@ -30,7 +30,7 @@ public class UserAuthService implements UserDetailsService {
                     .build());
 
             return User.builder()
-                    .username(employeeVo.getId())
+                    .username(employeeVo.getName())
                     .password(employeeVo.getPassword())
                     .build();
 

@@ -8,11 +8,11 @@ public interface RetrieveUserCmdOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string name = 2;</code>
+   * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
-   * <code>string name = 2;</code>
+   * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();

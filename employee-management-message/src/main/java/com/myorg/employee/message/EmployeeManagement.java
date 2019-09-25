@@ -176,63 +176,62 @@ public final class EmployeeManagement {
       "\n4com/myorg/employee/message/employee-ma" +
       "nagement.proto\022\032com.myorg.employee.messa" +
       "ge\032\037google/protobuf/timestamp.proto\032\025sca" +
-      "lapb/scalapb.proto\"4\n\006UserVo\022\n\n\002id\030\001 \001(\t" +
-      "\022\014\n\004name\030\002 \001(\t\022\020\n\010password\030\003 \001(\t\"e\n\nUser" +
-      "ListVo\0221\n\005items\030\001 \003(\0132\".com.myorg.employ" +
-      "ee.message.UserVo\022\017\n\007hasMore\030\002 \001(\010\022\023\n\013pa" +
-      "gingState\030\003 \001(\t\";\n\rCreateUserCmd\022\n\n\002id\030\001" +
-      " \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010password\030\003 \001(\t\";\n\r" +
-      "UpdateUserCmd\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022" +
-      "\020\n\010password\030\003 \001(\t\"\035\n\rDeleteUserCmd\022\014\n\004na" +
-      "me\030\002 \001(\t\"\037\n\017RetrieveUserCmd\022\014\n\004name\030\002 \001(" +
-      "\t\"$\n\010GenderVo\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\"" +
-      "i\n\014GenderListVo\0223\n\005items\030\001 \003(\0132$.com.myo" +
-      "rg.employee.message.GenderVo\022\017\n\007hasMore\030" +
-      "\002 \001(\010\022\023\n\013pagingState\030\003 \001(\t\"+\n\017CreateGend" +
-      "erCmd\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\"+\n\017Updat" +
-      "eGenderCmd\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\"\035\n\017" +
-      "DeleteGenderCmd\022\n\n\002id\030\001 \001(\005\"\037\n\021RetrieveG" +
-      "enderCmd\022\n\n\002id\030\001 \001(\005\"\214\001\n\nEmployeeVo\022\n\n\002i" +
-      "d\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\0222\n\006gender\030\003 \001(\0162\"." +
-      "com.myorg.employee.message.Gender\0220\n\014emp" +
-      "loyedDate\030\004 \001(\0132\032.google.protobuf.Timest" +
-      "amp\"m\n\016EmployeeListVo\0225\n\005items\030\001 \003(\0132&.c" +
-      "om.myorg.employee.message.EmployeeVo\022\017\n\007" +
-      "hasMore\030\002 \001(\010\022\023\n\013pagingState\030\003 \001(\t\"\223\001\n\021C" +
-      "reateEmployeeCmd\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001" +
-      "(\t\0222\n\006gender\030\003 \001(\0162\".com.myorg.employee." +
-      "message.Gender\0220\n\014employedDate\030\004 \001(\0132\032.g" +
-      "oogle.protobuf.Timestamp\"\223\001\n\021UpdateEmplo" +
-      "yeeCmd\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\0222\n\006gend" +
-      "er\030\003 \001(\0162\".com.myorg.employee.message.Ge" +
-      "nder\0220\n\014employedDate\030\004 \001(\0132\032.google.prot" +
-      "obuf.Timestamp\"\037\n\021DeleteEmployeeCmd\022\n\n\002i" +
-      "d\030\001 \001(\t\"!\n\023RetrieveEmployeeCmd\022\n\n\002id\030\001 \001" +
-      "(\t\"6\n\014DepartmentVo\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002" +
-      " \001(\t\022\014\n\004desc\030\003 \001(\t\"q\n\020DepartmentListVo\0227" +
-      "\n\005items\030\001 \003(\0132(.com.myorg.employee.messa" +
-      "ge.DepartmentVo\022\017\n\007hasMore\030\002 \001(\010\022\023\n\013pagi" +
-      "ngState\030\003 \001(\t\"=\n\023CreateDepartmentCmd\022\n\n\002" +
-      "id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\014\n\004desc\030\003 \001(\t\"=\n\023" +
-      "UpdateDepartmentCmd\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030" +
-      "\002 \001(\t\022\014\n\004desc\030\003 \001(\t\"!\n\023DeleteDepartmentC" +
-      "md\022\n\n\002id\030\001 \001(\t\"#\n\025RetrieveDepartmentCmd\022" +
-      "\n\n\002id\030\001 \001(\t\"@\n\024EmployeeDepartmentVo\022\022\n\ne" +
-      "mployeeId\030\001 \001(\t\022\024\n\014departmentId\030\002 \001(\t\"\201\001" +
-      "\n\030EmployeeDepartmentListVo\022?\n\005items\030\001 \003(" +
-      "\01320.com.myorg.employee.message.EmployeeD" +
-      "epartmentVo\022\017\n\007hasMore\030\002 \001(\010\022\023\n\013pagingSt" +
-      "ate\030\003 \001(\t\"G\n\033CreateEmployeeDepartmentCmd" +
-      "\022\022\n\nemployeeId\030\001 \001(\t\022\024\n\014departmentId\030\002 \001" +
-      "(\t\"G\n\033UpdateEmployeeDepartmentCmd\022\022\n\nemp" +
-      "loyeeId\030\001 \001(\t\022\024\n\014departmentId\030\002 \001(\t\"G\n\033D" +
-      "eleteEmployeeDepartmentCmd\022\022\n\nemployeeId" +
-      "\030\001 \001(\t\022\024\n\014departmentId\030\002 \001(\t\"I\n\035Retrieve" +
-      "EmployeeDepartmentCmd\022\022\n\nemployeeId\030\001 \001(" +
-      "\t\022\024\n\014departmentId\030\002 \001(\t*2\n\006Gender\022\022\n\016UNK" +
-      "NOWN_GENDER\020\000\022\010\n\004MALE\020\001\022\n\n\006FEMALE\020\002B7\n\032c" +
-      "om.myorg.employee.messageB\022EmployeeManag" +
-      "ementP\001\342?\002\020\001b\006proto3"
+      "lapb/scalapb.proto\"(\n\006UserVo\022\014\n\004name\030\001 \001" +
+      "(\t\022\020\n\010password\030\002 \001(\t\"e\n\nUserListVo\0221\n\005it" +
+      "ems\030\001 \003(\0132\".com.myorg.employee.message.U" +
+      "serVo\022\017\n\007hasMore\030\002 \001(\010\022\023\n\013pagingState\030\003 " +
+      "\001(\t\"/\n\rCreateUserCmd\022\014\n\004name\030\001 \001(\t\022\020\n\010pa" +
+      "ssword\030\002 \001(\t\"/\n\rUpdateUserCmd\022\014\n\004name\030\001 " +
+      "\001(\t\022\020\n\010password\030\002 \001(\t\"\035\n\rDeleteUserCmd\022\014" +
+      "\n\004name\030\001 \001(\t\"\037\n\017RetrieveUserCmd\022\014\n\004name\030" +
+      "\001 \001(\t\"$\n\010GenderVo\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 " +
+      "\001(\t\"i\n\014GenderListVo\0223\n\005items\030\001 \003(\0132$.com" +
+      ".myorg.employee.message.GenderVo\022\017\n\007hasM" +
+      "ore\030\002 \001(\010\022\023\n\013pagingState\030\003 \001(\t\"+\n\017Create" +
+      "GenderCmd\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\"+\n\017U" +
+      "pdateGenderCmd\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t" +
+      "\"\035\n\017DeleteGenderCmd\022\n\n\002id\030\001 \001(\005\"\037\n\021Retri" +
+      "eveGenderCmd\022\n\n\002id\030\001 \001(\005\"\214\001\n\nEmployeeVo\022" +
+      "\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\0222\n\006gender\030\003 \001(" +
+      "\0162\".com.myorg.employee.message.Gender\0220\n" +
+      "\014employedDate\030\004 \001(\0132\032.google.protobuf.Ti" +
+      "mestamp\"m\n\016EmployeeListVo\0225\n\005items\030\001 \003(\013" +
+      "2&.com.myorg.employee.message.EmployeeVo" +
+      "\022\017\n\007hasMore\030\002 \001(\010\022\023\n\013pagingState\030\003 \001(\t\"\223" +
+      "\001\n\021CreateEmployeeCmd\022\n\n\002id\030\001 \001(\t\022\014\n\004name" +
+      "\030\002 \001(\t\0222\n\006gender\030\003 \001(\0162\".com.myorg.emplo" +
+      "yee.message.Gender\0220\n\014employedDate\030\004 \001(\013" +
+      "2\032.google.protobuf.Timestamp\"\223\001\n\021UpdateE" +
+      "mployeeCmd\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\0222\n\006" +
+      "gender\030\003 \001(\0162\".com.myorg.employee.messag" +
+      "e.Gender\0220\n\014employedDate\030\004 \001(\0132\032.google." +
+      "protobuf.Timestamp\"\037\n\021DeleteEmployeeCmd\022" +
+      "\n\n\002id\030\001 \001(\t\"!\n\023RetrieveEmployeeCmd\022\n\n\002id" +
+      "\030\001 \001(\t\"6\n\014DepartmentVo\022\n\n\002id\030\001 \001(\t\022\014\n\004na" +
+      "me\030\002 \001(\t\022\014\n\004desc\030\003 \001(\t\"q\n\020DepartmentList" +
+      "Vo\0227\n\005items\030\001 \003(\0132(.com.myorg.employee.m" +
+      "essage.DepartmentVo\022\017\n\007hasMore\030\002 \001(\010\022\023\n\013" +
+      "pagingState\030\003 \001(\t\"=\n\023CreateDepartmentCmd" +
+      "\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\014\n\004desc\030\003 \001(\t" +
+      "\"=\n\023UpdateDepartmentCmd\022\n\n\002id\030\001 \001(\t\022\014\n\004n" +
+      "ame\030\002 \001(\t\022\014\n\004desc\030\003 \001(\t\"!\n\023DeleteDepartm" +
+      "entCmd\022\n\n\002id\030\001 \001(\t\"#\n\025RetrieveDepartment" +
+      "Cmd\022\n\n\002id\030\001 \001(\t\"@\n\024EmployeeDepartmentVo\022" +
+      "\022\n\nemployeeId\030\001 \001(\t\022\024\n\014departmentId\030\002 \001(" +
+      "\t\"\201\001\n\030EmployeeDepartmentListVo\022?\n\005items\030" +
+      "\001 \003(\01320.com.myorg.employee.message.Emplo" +
+      "yeeDepartmentVo\022\017\n\007hasMore\030\002 \001(\010\022\023\n\013pagi" +
+      "ngState\030\003 \001(\t\"G\n\033CreateEmployeeDepartmen" +
+      "tCmd\022\022\n\nemployeeId\030\001 \001(\t\022\024\n\014departmentId" +
+      "\030\002 \001(\t\"G\n\033UpdateEmployeeDepartmentCmd\022\022\n" +
+      "\nemployeeId\030\001 \001(\t\022\024\n\014departmentId\030\002 \001(\t\"" +
+      "G\n\033DeleteEmployeeDepartmentCmd\022\022\n\nemploy" +
+      "eeId\030\001 \001(\t\022\024\n\014departmentId\030\002 \001(\t\"I\n\035Retr" +
+      "ieveEmployeeDepartmentCmd\022\022\n\nemployeeId\030" +
+      "\001 \001(\t\022\024\n\014departmentId\030\002 \001(\t*2\n\006Gender\022\022\n" +
+      "\016UNKNOWN_GENDER\020\000\022\010\n\004MALE\020\001\022\n\n\006FEMALE\020\002B" +
+      "7\n\032com.myorg.employee.messageB\022EmployeeM" +
+      "anagementP\001\342?\002\020\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -253,7 +252,7 @@ public final class EmployeeManagement {
     internal_static_com_myorg_employee_message_UserVo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_myorg_employee_message_UserVo_descriptor,
-        new java.lang.String[] { "Id", "Name", "Password", });
+        new java.lang.String[] { "Name", "Password", });
     internal_static_com_myorg_employee_message_UserListVo_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_myorg_employee_message_UserListVo_fieldAccessorTable = new
@@ -265,13 +264,13 @@ public final class EmployeeManagement {
     internal_static_com_myorg_employee_message_CreateUserCmd_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_myorg_employee_message_CreateUserCmd_descriptor,
-        new java.lang.String[] { "Id", "Name", "Password", });
+        new java.lang.String[] { "Name", "Password", });
     internal_static_com_myorg_employee_message_UpdateUserCmd_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_com_myorg_employee_message_UpdateUserCmd_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_myorg_employee_message_UpdateUserCmd_descriptor,
-        new java.lang.String[] { "Id", "Name", "Password", });
+        new java.lang.String[] { "Name", "Password", });
     internal_static_com_myorg_employee_message_DeleteUserCmd_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_com_myorg_employee_message_DeleteUserCmd_fieldAccessorTable = new

@@ -80,9 +80,6 @@ public class UserController {
     short colNumber = 0;
     HSSFCell cell = null;
     cell = row.createCell(colNumber++);
-    cell.setCellValue("Id");
-    cell.setCellStyle(style);
-    cell = row.createCell(colNumber++);
     cell.setCellValue("Name");
     cell.setCellStyle(style);
     cell = row.createCell(colNumber++);
@@ -93,9 +90,6 @@ public class UserController {
   private void exportDataCells(UserVo vo, HSSFRow row, HSSFCellStyle style) {
     short colNumber = 0;
     HSSFCell cell = null;
-    cell = row.createCell(colNumber++);
-    cell.setCellValue(String.format("%s", vo.getId()));
-    cell.setCellStyle(style);
     cell = row.createCell(colNumber++);
     cell.setCellValue(String.format("%s", vo.getName()));
     cell.setCellStyle(style);

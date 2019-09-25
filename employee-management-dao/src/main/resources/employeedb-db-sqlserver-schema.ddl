@@ -68,7 +68,6 @@ GRANT SELECT, UPDATE, DELETE ON SCHEMA::[employeedb] to [employeedb]
 
 CREATE TABLE [employeedb].[user] (
   [name] VARCHAR(64) NOT NULL,
-  [id] VARCHAR(64) NOT NULL,
   [password] VARCHAR(64) NOT NULL
 )
 GO

@@ -12,9 +12,8 @@ option (scalapb.options) = {
 };
 
 message UserVo {
-  string id = 1;
-  string name = 2;
-  string password = 3;
+  string name = 1;
+  string password = 2;
 }
 
 message UserListVo {
@@ -24,23 +23,21 @@ message UserListVo {
 }
 
 message CreateUserCmd {
-  string id = 1;
-  string name = 2;
-  string password = 3;
+  string name = 1;
+  string password = 2;
 }
 
 message UpdateUserCmd {
-  string id = 1;
-  string name = 2;
-  string password = 3;
+  string name = 1;
+  string password = 2;
 }
 
 message DeleteUserCmd {
-  string name = 2;
+  string name = 1;
 }
 
 message RetrieveUserCmd {
-  string name = 2;
+  string name = 1;
 }
 
 message GenderVo {

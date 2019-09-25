@@ -15,7 +15,6 @@ USE `employeedb`;
 
 CREATE TABLE `employeedb`.`user` (
   `name` VARCHAR(64) NOT NULL,
-  `id` VARCHAR(64) NOT NULL,
   `password` VARCHAR(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

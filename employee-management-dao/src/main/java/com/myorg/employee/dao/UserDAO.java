@@ -24,7 +24,6 @@ public class UserDAO {
 
     public ParamMapper() {
       Map<String, TypeConverter> map = new HashMap<>();
-      map.put("id", TypeConverters.toJavaTypeConverter("string"));
       map.put("name", TypeConverters.toJavaTypeConverter("string"));
       map.put("password", TypeConverters.toJavaTypeConverter("string"));
       this.mappers = map;
@@ -46,7 +45,6 @@ public class UserDAO {
   public static class ResultRowMapper implements RowMapper<UserVo> {
     public UserVo mapRow(java.sql.ResultSet rs, int rowNum) throws SQLException {
       UserVo.Builder builder = UserVo.newBuilder();
-      if(null != rs.getString("id")) builder.setId(rs.getString("id"));
       if(null != rs.getString("name")) builder.setName(rs.getString("name"));
       if(null != rs.getString("password")) builder.setPassword(rs.getString("password"));
 
@@ -60,24 +58,24 @@ public class UserDAO {
   }
 
   public int create(CreateUserCmd c) {
-    int rowsAffected = jdbcTemplate.update("UPDATE employeedb.user SET id = ?, password = ? WHERE name = ?", c.getId(), c.getPassword(), c.getName());
+    int rowsAffected = jdbcTemplate.update("UPDATE employeedb.user SET password = ? WHERE name = ?", c.getPassword(), c.getName());
     if(rowsAffected > 0) {
       return rowsAffected;
     } else {
-      return jdbcTemplate.update("INSERT INTO employeedb.user(id,name,password) VALUES (?,?,?)", c.getId(),c.getName(),c.getPassword());
+      return jdbcTemplate.update("INSERT INTO employeedb.user(name,password) VALUES (?,?)", c.getName(),c.getPassword());
     }
   }
 
   public UserVo retrieveByRowid(RetrieveByRowidCmd c) {
-    return (UserVo) jdbcTemplate.queryForObject("SELECT id, name, password FROM employeedb.user WHERE rowid = ? ", rowMapper, c.getRowid());
+    return (UserVo) jdbcTemplate.queryForObject("SELECT name, password FROM employeedb.user WHERE rowid = ? ", rowMapper, c.getRowid());
   }
 
   public UserVo retrieve(RetrieveUserCmd c) {
-    return (UserVo) jdbcTemplate.queryForObject("SELECT id, name, password FROM employeedb.user WHERE name = ? ", rowMapper, c.getName());
+    return (UserVo) jdbcTemplate.queryForObject("SELECT name, password FROM employeedb.user WHERE name = ? ", rowMapper, c.getName());
   }
 
   public int update(UpdateUserCmd c) {
-    return jdbcTemplate.update("UPDATE employeedb.user SET id = ?, password = ? WHERE name = ?", c.getId(), c.getPassword(), c.getName());
+    return jdbcTemplate.update("UPDATE employeedb.user SET password = ? WHERE name = ?", c.getPassword(), c.getName());
   }
 
   public int delete(DeleteUserCmd c) {
@@ -98,10 +96,10 @@ public class UserDAO {
           .get();
       String sql = String.format("WITH Paginateduser AS ("
           + "SELECT ROW_NUMBER() OVER (ORDER BY %s) AS RowNumber, "
-          + "id, name, password "
+          + "name, password "
           + "FROM employeedb.user %s "
           + ")"
-          + "SELECT id, name, password "
+          + "SELECT name, password "
           + "FROM Paginateduser "
           + "WHERE RowNumber > ? AND RowNumber <= ?",
           orderBy,
@@ -121,7 +119,7 @@ public class UserDAO {
         .setHasMore(!(jdbcTemplate.query(sql, rowMapper, moreParams.toArray()).isEmpty()))
         .build();
     } else {
-      String sql = String.format("SELECT id, name, password FROM employeedb.user %s ", where.toWhereClause(q));
+      String sql = String.format("SELECT name, password FROM employeedb.user %s ", where.toWhereClause(q));
       logger.info(sql);
       return UserListVo.newBuilder()
         .addAllItems(jdbcTemplate.query(sql, rowMapper, where.toUnnamedParamList(q, paramMapper).toArray()))
