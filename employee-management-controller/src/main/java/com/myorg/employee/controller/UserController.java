@@ -8,6 +8,7 @@ import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.*;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.*;
 import java.net.*;
@@ -19,10 +20,15 @@ import java.util.*;
 public class UserController {
   @Autowired
   private UserService service;
+  @Autowired
+  private PasswordEncoder passwordEncoder;
 
   @RequestMapping(value="create-user", produces="application/json")
   public void create(@RequestBody CreateUserCmd c, HttpServletRequest r) throws URISyntaxException {
-    service.create(c, r.getUserPrincipal(), new URI(r.getRequestURI()));
+    CreateUserCmd encrypted = CreateUserCmd.newBuilder(c)
+            .setPassword(passwordEncoder.encode(c.getPassword()))
+            .build();
+    service.create(encrypted, r.getUserPrincipal(), new URI(r.getRequestURI()));
   }
 
   @RequestMapping(value="retrieve-user-by-rowid", produces="application/json")
@@ -37,7 +43,10 @@ public class UserController {
   
   @RequestMapping(value="update-user", produces="application/json")
   public void update(@RequestBody UpdateUserCmd c, HttpServletRequest r) throws URISyntaxException {
-    service.update(c, r.getUserPrincipal(), new URI(r.getRequestURI()));
+    UpdateUserCmd encrypted = UpdateUserCmd.newBuilder(c)
+            .setPassword(passwordEncoder.encode(c.getPassword()))
+            .build();
+    service.update(encrypted, r.getUserPrincipal(), new URI(r.getRequestURI()));
   }
 
   @RequestMapping(value="delete-user", produces="application/json")
