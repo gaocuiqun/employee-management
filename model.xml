@@ -4,11 +4,29 @@
        version="1.0.0" 
        maitainer="gaocuiqun@126.com" 
        dbSchema="employeedb">
+  <entity name="user" aggregateRoot="true" generate="true">
+    <field no="1" name="id" type="string" length="64" required="true" aggregate="true"/>
+    <field no="2" name="name" type="string" length="64" required="true" aggregate="true"/>
+    <field no="3" name="password" type="string" length="64" required="true" aggregate="true"/>
+    <primaryKey name="user_pk">
+      <field name="name"/>
+    </primaryKey>
+  </entity>
+  <entity name="Gender" aggregateRoot="false" enum="true" generate="true">
+    <field no="1" name="id" type="int" required="true"/>
+    <field no="2" name="name" type="string" length="64"/>
+    <primaryKey name="EntityTypePk">
+      <field name="id"/>
+    </primaryKey>
+    <row id="0" name="UNKNOWN_GENDER"/>
+    <row id="1" name="MALE"/>
+    <row id="2" name="FEMALE"/>
+  </entity>
   <entity name="employee" aggregateRoot="true" generate="true">
     <field no="1" name="id" type="string" length="64" required="true"/>
     <field no="2" name="name" type="string" length="128" required="true" aggregate="true"/>
-    <field no="3" name="password" type="string" length="64" required="true" aggregate="true"/>
-    <field no="4" name="desc" type="string" length="128" required="true" aggregate="true"/>
+    <field no="3" name="gender" type="Gender" required="true" aggregate="true"/>
+    <field no="4" name="employed_date" type="timestamp" required="true" aggregate="true"/>
     <primaryKey name="employee_pk">
       <field name="id"/>
     </primaryKey>
