@@ -24,4 +24,13 @@
     </bean>
 
     <bean id="eventSourceAdapter" class="com.github.apuex.eventsource.EventSourceAdapter.NullAdapter"/>
+
+    <bean id="userDetailsService" class="com.myorg.employee.service.UserAuthService"/>
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.MessageDigestPasswordEncoder">
+        <constructor-arg value="MD5"/>
+    </bean>
+    <bean id="authenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <property name="userDetailsService" ref="userDetailsService"/>
+        <property name="passwordEncoder" ref="passwordEncoder"/>
+    </bean>
 </beans>

@@ -1,6 +1,5 @@
 package com.myorg.employee.service;
 
-import com.github.apuex.eventsource.EventSourceAdapter;
 import com.myorg.employee.dao.UserDAO;
 import com.myorg.employee.message.RetrieveUserCmd;
 import com.myorg.employee.message.UserVo;
@@ -11,13 +10,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
-@Service
 public class UserAuthService implements UserDetailsService {
     private final static Logger logger = LoggerFactory.getLogger(UserAuthService.class);
-    @Autowired
-    private EventSourceAdapter eventSourceAdapter;
     @Autowired
     private UserDAO userDAO;
 
@@ -31,10 +26,13 @@ public class UserAuthService implements UserDetailsService {
 
             return User.builder()
                     .username(employeeVo.getName())
+                    .password("password")
                     .password(employeeVo.getPassword())
+                    .roles("user")
                     .build();
 
         } catch (Exception sqlex) {
+            sqlex.printStackTrace();
             logger.info("no user: {}", username);
             throw new UsernameNotFoundException("User not found.", sqlex);
         }

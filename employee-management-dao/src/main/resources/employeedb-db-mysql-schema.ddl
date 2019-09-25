@@ -15,7 +15,7 @@ USE `employeedb`;
 
 CREATE TABLE `employeedb`.`user` (
   `name` VARCHAR(64) NOT NULL,
-  `password` VARCHAR(64) NOT NULL
+  `password` VARCHAR(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `employeedb`.`Gender` (
