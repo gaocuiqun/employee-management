@@ -12,6 +12,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { HelpComponent } from './help/help.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { DepartmentComponent } from './department/department.component';
+import { UserComponent } from './user/user.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 
@@ -21,6 +24,9 @@ import { LogoutComponent } from './auth/logout/logout.component';
     MyProfileComponent,
     AppComponent,
     LoginComponent,
+    EmployeeComponent,
+    DepartmentComponent,
+    UserComponent,
     LogoutComponent
   ],
   imports: [
