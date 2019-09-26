@@ -605,8 +605,13 @@ let AuthGuard = class AuthGuard {
         this.authService.check()
             .subscribe((response) => {
             // Navigate to the login page with extras
-            this.authService.isLoggedIn = true;
-            this.router.navigate([this.authService.redirectUrl]);
+            if (response === 'welcome') {
+                this.authService.isLoggedIn = true;
+                this.router.navigate([this.authService.redirectUrl]);
+            }
+            else {
+                this.router.navigate(['/login']);
+            }
         }, error => {
             this.router.navigate(['/login']);
         });
@@ -681,7 +686,7 @@ let AuthService = class AuthService {
         }));
     }
     check() {
-        return this.http.get('/login-check', { responseType: 'text' })
+        return this.http.get('/user/login-check', { responseType: 'text' })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(event => {
             this.isLoggedIn = true;
         }, error => {

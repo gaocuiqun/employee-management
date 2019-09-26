@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   check() {
-    return this.http.get('/login-check', {responseType: 'text'})
+    return this.http.get('/user/login-check', {responseType: 'text'})
     .pipe(
       tap(
         event => {

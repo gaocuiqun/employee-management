@@ -44,11 +44,6 @@ public class LoginController {
     return "logged-out";
   }
 
-  @RequestMapping(value="login-check", method=RequestMethod.GET)
-  public String loginCheck() {
-    return "welcome";
-  }
-
   private String hashed(String message, String algorithm) throws NoSuchAlgorithmException {
     MessageDigest md = MessageDigest.getInstance(algorithm);
     md.update(message.getBytes());

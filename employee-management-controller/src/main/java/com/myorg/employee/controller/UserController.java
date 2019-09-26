@@ -23,6 +23,11 @@ public class UserController {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
+  @RequestMapping(value="login-check", method=RequestMethod.GET)
+  public String loginCheck() {
+    return "welcome";
+  }
+
   @RequestMapping(value="create-user", produces="application/json")
   public void create(@RequestBody CreateUserCmd c, HttpServletRequest r) throws URISyntaxException {
     CreateUserCmd encrypted = CreateUserCmd.newBuilder(c)
