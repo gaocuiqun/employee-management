@@ -295,7 +295,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-expand navbar-dark bg-primary d-flex\"><a routerLink=\"/help\" class=\"navbar-brand\">员工管理系统</a>\n  <div id=\"navbarSupportedContent\" class=\"navbar-collapse\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item\"><a routerLink=\"/user\" class=\"nav-link\">用户</a></li>\n      <li class=\"nav-item\"><a routerLink=\"/employee\" class=\"nav-link\">员工</a></li>\n      <li class=\"nav-item\"><a routerLink=\"/department\" class=\"nav-link\">部门</a></li>\n    </ul>\n    <ul class=\"navbar-nav\">\n      <li class=\"nav-item\"><a routerLink=\"/my-profile\" class=\"nav-link\">帐户</a></li>\n      <li class=\"nav-item\"><a routerLink=\"/logout\" class=\"nav-link\">注销</a></li>\n    </ul>\n  </div>\n</nav>\n<router-outlet></router-outlet>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-expand navbar-dark bg-primary d-flex\"><a routerLink=\"/help\" class=\"navbar-brand\">员工管理系统</a>\n  <div id=\"navbarSupportedContent\" class=\"navbar-collapse\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item\"><a routerLink=\"/user\" class=\"nav-link\">用户</a></li>\n      <li class=\"nav-item\"><a routerLink=\"/employee\" class=\"nav-link\">员工</a></li>\n      <li class=\"nav-item\"><a routerLink=\"/department\" class=\"nav-link\">部门</a></li>\n      <li class=\"nav-item\"><a routerLink=\"/help\" class=\"nav-link\">帮助</a></li>\n    </ul>\n    <ul class=\"navbar-nav\">\n      <li class=\"nav-item\"><a routerLink=\"/my-profile\" class=\"nav-link\">帐户</a></li>\n      <li class=\"nav-item\"><a routerLink=\"/logout\" class=\"nav-link\">注销</a></li>\n    </ul>\n  </div>\n</nav>\n<router-outlet></router-outlet>\n");
 
 /***/ }),
 
@@ -456,9 +456,9 @@ const routes = [
     { path: '', redirectTo: '/help', pathMatch: 'full', canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_9__["AuthGuard"]] },
     { path: 'my-profile', component: _my_profile_my_profile_component__WEBPACK_IMPORTED_MODULE_2__["MyProfileComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_9__["AuthGuard"]] },
     { path: 'login', component: _auth_login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"] },
-    { path: 'employee', component: _employee_employee_component__WEBPACK_IMPORTED_MODULE_5__["EmployeeComponent"] },
-    { path: 'department', component: _department_department_component__WEBPACK_IMPORTED_MODULE_6__["DepartmentComponent"] },
-    { path: 'user', component: _user_user_component__WEBPACK_IMPORTED_MODULE_7__["UserComponent"] },
+    { path: 'employee', component: _employee_employee_component__WEBPACK_IMPORTED_MODULE_5__["EmployeeComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_9__["AuthGuard"]] },
+    { path: 'department', component: _department_department_component__WEBPACK_IMPORTED_MODULE_6__["DepartmentComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_9__["AuthGuard"]] },
+    { path: 'user', component: _user_user_component__WEBPACK_IMPORTED_MODULE_7__["UserComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_9__["AuthGuard"]] },
     { path: 'logout', component: _auth_logout_logout_component__WEBPACK_IMPORTED_MODULE_8__["LogoutComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_9__["AuthGuard"]] },
     { path: 'help', component: _help_help_component__WEBPACK_IMPORTED_MODULE_3__["HelpComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_9__["AuthGuard"]] }
 ];

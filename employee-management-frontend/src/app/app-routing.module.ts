@@ -15,9 +15,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/help', pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'employee', component: EmployeeComponent },
-  { path: 'department', component: DepartmentComponent },
-  { path: 'user', component: UserComponent },
+  { path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard] },
+  { path: 'department', component: DepartmentComponent, canActivate: [AuthGuard] },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
   { path: 'help', component: HelpComponent, canActivate: [AuthGuard] }
 ];
