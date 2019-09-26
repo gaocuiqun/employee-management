@@ -1,0 +1,88 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+
+.query-form {
+  margin: 1em 0 1em 0;
+}
+.combo-panel {
+  height: auto;
+}
+.alert {
+    position: relative;
+    padding: .175rem .75rem;
+    margin: .5rem 0 0 0;
+    border-radius: .25rem;
+}
+.bd-sidebar {
+    position: sticky;
+    top: 4rem;
+    height: calc(100vh - 4rem);
+}
+.bd-sidebar {
+    border-right: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.bd-content {
+  padding: 1em;
+  min-height: 85vh;
+}
+
+.main-header{
+  color: #222;
+  line-height: 30px;
+}
+.side-toggle{
+  /*position: relative;*/
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  top: 6px;
+  left: 5px;
+  margin-right: 10px;
+  color: #000;
+  fill: #000;
+  cursor: pointer;
+}
+.side-menu-header .side-toggle{
+}
+.side-menu-header{
+  line-height: 30px;
+}
+.side-menu{
+  background: #eee;
+  margin: 0;
+  padding: 10px 0;
+}
+.side-menu-item{
+  padding: 5px 0;
+}
+.side-menu-item:hover{
+  background: #666;
+}
+.side-menu .side-toggle{
+  top: 0;
+  left: 8px;
+  margin-right: 14px;
+}
+.side-menu-icon{
+  display: inline-block;
+  vertical-align: middle;
+}
+.side-menu-text{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.captcha {
+  margin: 5px 0 5px 0;
+  width: 200px;
+  height: 70px;
+  display: block;
+}
+
+.error-msg {
+  margin: 5px;
+}

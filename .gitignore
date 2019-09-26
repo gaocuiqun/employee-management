@@ -27,3 +27,9 @@ hs_err_pid*
 *.iml
 .idea/
 .swp
+
+# nodejs files.
+
+node_modules/
+dist/
+
