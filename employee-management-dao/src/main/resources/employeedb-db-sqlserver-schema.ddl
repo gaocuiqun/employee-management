@@ -1,7 +1,3 @@
------------------------------------------------------
--- This file is 100% ***GENERATED***, DO NOT EDIT! --
------------------------------------------------------
-
 -- Using 'employeedb' as database name, schema name, login name, user name and role name.
 -- For Test/Demo purpose only.
 -- Fine-tuning is need for production.

@@ -1,7 +1,3 @@
-/*****************************************************
- ** This file is 100% ***GENERATED***, DO NOT EDIT! **
- *****************************************************/
-
 DROP USER IF EXISTS 'employeedb';
 DROP DATABASE IF EXISTS `employeedb`;
 
