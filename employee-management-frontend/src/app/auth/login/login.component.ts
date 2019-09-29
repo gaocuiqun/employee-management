@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../auth.service'
 import { Login, LoginResponse } from '../login'
+import { Config } from '../../config/config'
 import { Router } from '@angular/router';
 
 
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   newCaptcha(): string {
-    return '/captcha?_ts=' + new Date().getTime();
+    return Config.API_BASE_HREF + '/captcha?_ts=' + new Date().getTime();
   }
 
   loginForm = new FormGroup({

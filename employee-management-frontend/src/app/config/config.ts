@@ -1,3 +1,3 @@
 export class Config {
-  static readonly API_BASE_HREF: string = '/';
+  static readonly API_BASE_HREF: string = '/hello';
 }

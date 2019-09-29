@@ -22,16 +22,17 @@ export class AuthGuard implements CanActivate {
     // Store the attempted URL for redirecting
     if (this.authService.isLoggedIn) { return true; }
     this.authService.redirectUrl = url;
-    this.authService.check()
+    this.authService.who()
     .subscribe(
       (response: string) => {
         // Navigate to the login page with extras
         console.log(response);
-        if(response === 'welcome') {
+        this.authService.user = response;
+        if('anonymousUser' == (response.trim())) {
+          this.router.navigate(['/login']);
+        } else {
           this.authService.isLoggedIn = true;
           this.router.navigate([this.authService.redirectUrl]);
-        } else {
-          this.router.navigate(['/login']);
         }
       },
       error => {

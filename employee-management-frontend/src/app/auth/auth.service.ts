@@ -5,12 +5,14 @@ import { Observable, of } from 'rxjs';
 import { tap, delay } from 'rxjs/operators';
 
 import { Login, LoginResponse } from './login'
+import { Config } from '../config/config'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   isLoggedIn = false;
+  user = '';
   // store the URL so we can redirect after logging in
   redirectUrl: string = '';
 
@@ -30,7 +32,7 @@ export class AuthService {
       .set('captcha', captcha);
 
     return this.http.post(
-      '/login',
+      Config.API_BASE_HREF + '/login',
       body,
       httpOptions
     ).pipe(
@@ -46,7 +48,21 @@ export class AuthService {
   }
 
   check() {
-    return this.http.get('/user/login-check', {responseType: 'text'})
+    return this.http.get(Config.API_BASE_HREF + '/user/login-check', {responseType: 'text'})
+    .pipe(
+      tap(
+        event => {
+          this.isLoggedIn = true;
+        },
+        error => {
+          console.log('error: ' + JSON.stringify(error));
+        }
+      )
+    );
+  }
+
+  who() {
+    return this.http.get(Config.API_BASE_HREF + '/who', {responseType: 'text'})
     .pipe(
       tap(
         event => {
@@ -61,7 +77,7 @@ export class AuthService {
 
 
   logout(): Observable<string> {
-    return this.http.get('/logout', {responseType: 'text'})
+    return this.http.get(Config.API_BASE_HREF + '/logout', {responseType: 'text'})
     .pipe(
       tap(val => {
         this.isLoggedIn = false;
